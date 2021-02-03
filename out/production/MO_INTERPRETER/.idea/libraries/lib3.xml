@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="lib3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/production/cmpiler_final-main/lib/richtextfx-fat-0.10.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/cmpiler_final-main/lib/antlr-4.9-complete.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
