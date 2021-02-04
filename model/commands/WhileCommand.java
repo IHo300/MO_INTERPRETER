@@ -26,7 +26,7 @@ public class WhileCommand implements ControlledCommand {
 
     public WhileCommand(WhileStatementContext whileStatementContext) {
         this.commandList = new ArrayList<>();
-        this.iteratorIdentifier = whileStatementContext.IDENTIFIER().getText();
+        this.iteratorIdentifier = whileStatementContext.Identifier().getText();
 //        this.iterationToStatementCtx = whileStatementContext.iterationToStatement();
         this.simpleExpressionCtx = whileStatementContext.simpleExpression();
         this.scope = ScopeManager.getInstance().getScope();

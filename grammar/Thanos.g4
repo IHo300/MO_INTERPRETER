@@ -61,7 +61,7 @@ argumentExpressionList
     ;
 
 unaryExpression
-    :   postfixExpression
+    :   factor
     |   '++' unaryExpression
     |   unaryExpression'++'
     |   '--' unaryExpression
@@ -71,6 +71,17 @@ unaryExpression
     |   'sizeof' '(' typeName ')'
     |   '_Alignof' '(' typeName ')'
     |   '&&' Identifier // GCC extension address of label
+    ;
+
+factor
+    :   postfixExpression
+    |   noChange
+    ;
+
+noChange
+    :   functionCall
+    |   '('expressionStatement')'
+    |   Constant
     ;
 
 unaryOperator
@@ -612,7 +623,11 @@ jumpStatement
     ;
 
 compilationUnit
-    :   translationUnit? EOF
+    :   translationUnit? main EOF
+    ;
+
+main
+    :   'main' '(' ')' compoundStatement
     ;
 
 translationUnit
@@ -628,6 +643,7 @@ externalDeclaration
 
 functionDefinition
     :   declarationSpecifiers? declarator declarationList? compoundStatement//modified(added)
+    |   'func' (typeSpecifier | arrayTypeSpecifier | 'void') Identifier '(' parameterList ')' compoundStatement
     //:   Func? declarationSpecifiers? declarator declarationList? compoundStatement//modified(added)
     ;
 
