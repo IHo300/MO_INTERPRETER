@@ -14,7 +14,7 @@ import parser.ThanosParser.ExpressionStatementContext;
 import parser.ThanosParser.PostfixExpressionContext;
 import model.*;
 import model.objects.*;
-import model.SemCheck.UndeclaredSemCheck;
+import model.SemCheck.*;
 
 public class AssignCommand implements Command {
 

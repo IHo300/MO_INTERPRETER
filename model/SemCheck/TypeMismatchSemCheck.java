@@ -1,12 +1,13 @@
-package model.semcheck;
+package model.SemCheck;
 
+import model.SemCheck.*;
 import model.objects.*;
 import model.Console;
-import parser.PSCParser.SimpleExpressionContext;
-import parser.PSCParser.ConstantContext;
-import parser.PSCParser.MutableContext;
-import parser.PSCParser.CallContext;
-import parser.PSCParser.ArgumentsContext;
+import parser.ThanosParser.SimpleExpressionContext;
+import parser.ThanosParser.ConstantContext;
+import parser.ThanosParser.MutableContext;
+import parser.ThanosParser.CallContext;
+import parser.ThanosParser.ArgumentsContext;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTreeListener;

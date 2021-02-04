@@ -6,14 +6,14 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CharStream;
 
 import model.*;
-import view.AppView;
+import view.Gui;
 
 public class AppController {
 
     private Parser parser;
-    private AppView view;
+    private Gui view;
 
-    public AppController(Parser parser, AppView view) {
+    public AppController(Parser parser, Gui view) {
         this.parser = parser;
         this.view = view;        
         init();

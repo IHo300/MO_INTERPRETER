@@ -2,14 +2,8 @@ package model.SemCheck;
 
 import model.objects.*;
 import model.Console;
-import parser.PSCParser.MutableContext;
-import parser.PSCParser.SimpleExpressionContext;
 import org.antlr.v4.runtime.Token;
-import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.tree.ParseTreeListener;
-import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.antlr.v4.runtime.tree.TerminalNode;
-import org.antlr.v4.runtime.tree.ErrorNode;
 
 import model.*;
 

@@ -7,10 +7,10 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import parser.PSCParser.SimpleExpressionContext;
+import parser.ThanosParser.SimpleExpressionContext;
 import model.*;
 import model.objects.*;
-import model.semcheck.*;
+import model.SemCheck.*;
 
 public class IteratorAssignCommand implements Command {
 

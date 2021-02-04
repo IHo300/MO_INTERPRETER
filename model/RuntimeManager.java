@@ -65,14 +65,12 @@ public class RuntimeManager {
     }
 
     public void killExecution() {
-        Printer.getInstance().setStatus("Program has been terminated.", "fail" );
         this.thread.kill();
     }
 
     public void forceKillExecution() {
         if (this.thread != null) { //  if thread has even started
             if (this.thread.isExecuting()) { // if thread is executing
-                Printer.getInstance().setStatus("Program has been force terminated.", "fail" );
                 this.thread.kill();
             }
         }

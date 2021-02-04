@@ -2,10 +2,10 @@ package model.visitors;
 
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
-import parser.PSCParser.ProgramContext;
-import parser.PSCParser.FunctionDeclarationContext;
-import parser.PSCParser.MainProgramContext;
-import parser.PSCParser.CompoundStmtContext;
+import parser.ThanosParser.ProgramContext;
+import parser.ThanosParser.FunctionDeclarationContext;
+import parser.ThanosParser.MainProgramContext;
+import parser.ThanosParser.CompoundStmtContext;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.antlr.v4.runtime.tree.ErrorNode;

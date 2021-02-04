@@ -1,11 +1,11 @@
 package model.commands;
 
-import parser.PSCParser.SelectionStmtContext;
-import parser.PSCParser.SimpleExpressionContext;
+import parser.ThanosParser.SelectionStmtContext;
+import parser.ThanosParser.SimpleExpressionContext;
 
 import model.*;
 import model.objects.*;
-import model.semcheck.*;
+import model.SemCheck.*;
 import java.util.*;
 
 public class IfCommand implements ConditionalCommand {

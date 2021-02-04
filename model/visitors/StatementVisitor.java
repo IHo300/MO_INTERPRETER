@@ -2,17 +2,17 @@ package model.visitors;
 
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
-import parser.PSCParser.StatementContext;
-import parser.PSCParser.ScanStmtContext;
-import parser.PSCParser.PrintStmtContext;
-import parser.PSCParser.PrintParamsSelectorContext;
-import parser.PSCParser.IterationStmtContext;
-import parser.PSCParser.SelectionStmtContext;
-import parser.PSCParser.MutableContext;
-import parser.PSCParser.TypeSpecifierContext;
-import parser.PSCParser.AssignmentStandaloneExpressionContext;
-import parser.PSCParser.ForStatementContext;
-import parser.PSCParser.WhileStatementContext;
+import parser.ThanosParser.StatementContext;
+import parser.ThanosParser.ScanStmtContext;
+import parser.ThanosParser.PrintStmtContext;
+import parser.ThanosParser.PrintParamsSelectorContext;
+import parser.ThanosParser.IterationStmtContext;
+import parser.ThanosParser.SelectionStmtContext;
+import parser.ThanosParser.MutableContext;
+import parser.ThanosParser.TypeSpecifierContext;
+import parser.ThanosParser.AssignmentStandaloneExpressionContext;
+import parser.ThanosParser.ForStatementContext;
+import parser.ThanosParser.WhileStatementContext;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -22,7 +22,7 @@ import java.util.*;
 
 
 import model.objects.*;
-import model.semcheck.*;
+import model.SemCheck.*;
 import model.commands.*;
 import model.*;
 

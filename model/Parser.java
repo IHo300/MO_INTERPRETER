@@ -11,9 +11,9 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.antlr.v4.gui.TreeViewer;
 
-import parser.PSCLexer;
-import parser.PSCParser;
-import model.PSCCustomListener;
+import parser.ThanosLexer;
+import parser.ThanosParser;
+import model.ThanosCustomListener;
 import model.ScopeManager;
 
 public class Parser {
@@ -31,32 +31,32 @@ public class Parser {
     }
 
     public void parse() {
-        Lexer lexer = new PSCLexer(this.input);
+        Lexer lexer = new ThanosLexer(this.input);
 
-        PSCSyntaxChecker syntaxListener = new PSCSyntaxChecker();
+        ThanosSyntaxChecker syntaxListener = new ThanosSyntaxChecker();
         lexer.removeErrorListeners();
         lexer.addErrorListener( syntaxListener );
         
         TokenStream tokenStream = new CommonTokenStream(lexer);
-        PSCParser parser = new PSCParser(tokenStream);
+        ThanosParser parser = new ThanosParser(tokenStream);
         parser.removeErrorListeners();
         parser.addErrorListener( syntaxListener );
 
-        ParseTree tree = parser.program();
+        ParseTree tree = parser.compilationUnit();
         ParseTreeWalker walker = new ParseTreeWalker();
-        PSCCustomListener listener = new PSCCustomListener();
+        ThanosCustomListener listener = new ThanosCustomListener();
         walker.walk(listener, tree);
    }
 
    public void showTree() {
-       Lexer lexer = new PSCLexer(this.input);
+       Lexer lexer = new ThanosLexer(this.input);
        lexer.removeErrorListeners();
 
        TokenStream tokenStream = new CommonTokenStream(lexer);
-       PSCParser parser = new PSCParser(tokenStream);
+       ThanosParser parser = new ThanosParser(tokenStream);
        parser.removeErrorListeners();
        
-       ParseTree tree = parser.program();
+       ParseTree tree = parser.compilationUnit();
 
         // Tree inspector
         TreeViewer viewer = new TreeViewer(Arrays.asList(parser.getRuleNames()),tree);

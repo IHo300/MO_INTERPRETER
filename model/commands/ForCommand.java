@@ -1,13 +1,13 @@
 package model.commands;
 
-import parser.PSCParser.ForStatementContext;
-import parser.PSCParser.LoopDeclarationContext;
-import parser.PSCParser.IterationToStatementContext;
-import parser.PSCParser.SimpleExpressionContext;
+import parser.ThanosParser.ForStatementContext;
+import parser.ThanosParser.LoopDeclarationContext;
+import parser.ThanosParser.IterationToStatementContext;
+import parser.ThanosParser.SimpleExpressionContext;
 
 import model.*;
 import model.objects.*;
-import model.semcheck.*;
+import model.SemCheck.*;
 import java.util.*;
 
 

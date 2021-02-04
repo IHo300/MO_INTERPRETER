@@ -1,7 +1,7 @@
 package model.commands;
 
-import parser.PSCParser.PrintParamsContext;
-import parser.PSCParser.PrintParamsSelectorContext;
+import parser.ThanosParser.PrintParamsContext;
+import parser.ThanosParser.PrintParamsSelectorContext;
 import model.*;
 import javafx.application.Platform;
 import model.objects.*;

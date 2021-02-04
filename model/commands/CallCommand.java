@@ -11,7 +11,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import java.util.*;
 import model.*;
 import model.objects.*;
-import model.semcheck.*;
+import model.SemCheck.*;
 
 public class CallCommand implements Command {
 

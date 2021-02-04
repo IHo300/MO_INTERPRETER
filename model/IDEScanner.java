@@ -1,12 +1,12 @@
 
 package model;
 import java.util.*;
-import view.AppView;
+import view.Gui;
 
 public class IDEScanner {
 
     private static IDEScanner instance = null;
-    private AppView view;
+    private Gui view;
     
     public static IDEScanner getInstance() {
         if (instance == null) {
@@ -17,7 +17,7 @@ public class IDEScanner {
         return instance;
     }
 
-    public void addView(AppView view) {
+    public void addView(Gui view) {
         this.view = view;
     }
 

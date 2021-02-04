@@ -1,7 +1,7 @@
 package model.visitors;
 
-import parser.PSCParser.CompoundStmtContext;
-import parser.PSCParser.CompoundStmtBodyContext;
+import parser.ThanosParser.CompoundStmtContext;
+import parser.ThanosParser.CompoundStmtBodyContext;
 import org.antlr.v4.runtime.ParserRuleContext;
 
 import java.util.*;

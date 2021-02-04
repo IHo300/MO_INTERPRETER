@@ -2,7 +2,6 @@ package model;
 
 import java.util.*;
 import model.objects.*;
-import model.Console;
 
 public class Scope {
 

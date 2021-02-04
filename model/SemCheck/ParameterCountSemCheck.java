@@ -1,11 +1,11 @@
-package model.semcheck;
+package model.SemCheck;
 
 import java.util.*;
 
 import model.objects.*;
 import model.Console;
-import parser.PSCParser.ArgumentsContext;
-import parser.PSCParser.SimpleExpressionContext;
+import parser.ThanosParser.ArgumentsContext;
+import parser.ThanosParser.SimpleExpressionContext;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.antlr.v4.runtime.tree.ErrorNode;
 

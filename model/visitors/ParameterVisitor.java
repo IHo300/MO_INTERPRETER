@@ -4,10 +4,10 @@ import java.util.*;
 
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
-import parser.PSCParser.ParamsContext;
-import parser.PSCParser.TypeSpecifierContext;
-import parser.PSCParser.ParameterContext;
-import parser.PSCParser.TypeSpecifierSelectorContext;
+import parser.ThanosParser.ParamsContext;
+import parser.ThanosParser.TypeSpecifierContext;
+import parser.ThanosParser.ParameterContext;
+import parser.ThanosParser.TypeSpecifierSelectorContext;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -16,7 +16,7 @@ import model.objects.*;
 import model.ScopeManager;
 import model.Scope;
 import model.Console;
-import model.semcheck.MultipleFuncSemCheck;
+import model.SemCheck.MultipleFuncSemCheck;
 
 public class ParameterVisitor implements ParseTreeListener {
 

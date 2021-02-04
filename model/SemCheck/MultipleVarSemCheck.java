@@ -1,10 +1,10 @@
-package model.semcheck;
+package model.SemCheck;
 
 import model.objects.*;
 import model.Console;
-import parser.PSCParser.ScopedVariableDeclarationContext;
-import parser.PSCParser.VariableDeclarationInitializeContext;
-import parser.PSCParser.ArrayVariableDeclarationInitializeContext;
+import parser.ThanosParser.ScopedVariableDeclarationContext;
+import parser.ThanosParser.VariableDeclarationInitializeContext;
+import parser.ThanosParser.ArrayVariableDeclarationInitializeContext;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTreeListener;

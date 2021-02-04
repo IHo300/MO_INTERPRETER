@@ -7,10 +7,10 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import parser.PSCParser.MutableContext;
+import parser.ThanosParser.MutableContext;
 import model.*;
 import model.objects.*;
-import model.semcheck.*;
+import model.SemCheck.*;
 
 
 public class InitializeArrCommand implements Command {

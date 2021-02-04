@@ -1,6 +1,6 @@
 package model;
 
-import parser.PSCParser.SimpleExpressionContext;
+import parser.ThanosParser.SimpleExpressionContext;
 
 import model.objects.*;
 import model.commands.*;

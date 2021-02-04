@@ -33,7 +33,6 @@ public class RuntimeThread extends Thread {
         }
 
         if (noErrors) {
-            Printer.getInstance().setStatus("Program has executed successfully", "success");
         }
         
         RuntimeManager.getInstance().reset();

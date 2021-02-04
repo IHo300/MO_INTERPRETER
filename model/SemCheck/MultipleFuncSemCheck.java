@@ -1,8 +1,8 @@
-package model.semcheck;
+package model.SemCheck;
 
 import model.objects.*;
 import model.Console;
-import parser.PSCParser.FunctionDeclarationContext;
+import parser.ThanosParser.FunctionDeclarationContext;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.TerminalNode;

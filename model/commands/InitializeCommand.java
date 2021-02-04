@@ -7,11 +7,11 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import parser.PSCParser.SimpleExpressionContext;
-import parser.PSCParser.VariableDeclarationContext;
+import parser.ThanosParser.SimpleExpressionContext;
+import parser.ThanosParser.VariableDeclarationContext;
 import model.*;
 import model.objects.*;
-import model.semcheck.*;
+import model.SemCheck.*;
 
 
 public class InitializeCommand implements Command {

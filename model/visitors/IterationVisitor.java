@@ -2,18 +2,18 @@ package model.visitors;
 
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
-import parser.PSCParser.IterationStmtContext;
-import parser.PSCParser.WhileStatementContext;
-import parser.PSCParser.ForStatementContext;
-import parser.PSCParser.IterationStmtContext;
-import parser.PSCParser.CompoundStmtContext;
-import parser.PSCParser.LoopDeclarationContext;
+import parser.ThanosParser.IterationStmtContext;
+import parser.ThanosParser.WhileStatementContext;
+import parser.ThanosParser.ForStatementContext;
+import parser.ThanosParser.IterationStmtContext;
+import parser.ThanosParser.CompoundStmtContext;
+import parser.ThanosParser.LoopDeclarationContext;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.antlr.v4.runtime.tree.ErrorNode;
 
 import model.ScopeManager;
-import model.semcheck.*;
+import model.SemCheck.*;
 import model.Console;
 import model.objects.*;
 import model.Scope;

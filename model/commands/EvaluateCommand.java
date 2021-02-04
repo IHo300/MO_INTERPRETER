@@ -9,14 +9,14 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.math.BigDecimal;
-import parser.PSCParser.SimpleExpressionContext;
-import parser.PSCParser.ArgumentsContext;
-import parser.PSCParser.MutableContext;
-import parser.PSCParser.ConstantContext;
-import parser.PSCParser.CallContext;
+import parser.ThanosParser.SimpleExpressionContext;
+import parser.ThanosParser.ArgumentsContext;
+import parser.ThanosParser.MutableContext;
+import parser.ThanosParser.ConstantContext;
+import parser.ThanosParser.CallContext;
 import model.*;
 import model.objects.*;
-import model.semcheck.*;
+import model.SemCheck.*;
 
 public class EvaluateCommand implements Command, ParseTreeListener {
 

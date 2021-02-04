@@ -2,18 +2,18 @@ package model.visitors;
 
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
-import parser.PSCParser.ProgramContext;
-import parser.PSCParser.TypeSpecifierContext;
-import parser.PSCParser.ArrayTypeSpecifierContext;
-import parser.PSCParser.FunctionDeclarationContext;
-import parser.PSCParser.CompoundStmtContext;
-import parser.PSCParser.ParamsContext;
+import parser.ThanosParser.ProgramContext;
+import parser.ThanosParser.TypeSpecifierContext;
+import parser.ThanosParser.ArrayTypeSpecifierContext;
+import parser.ThanosParser.FunctionDeclarationContext;
+import parser.ThanosParser.CompoundStmtContext;
+import parser.ThanosParser.ParamsContext;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.antlr.v4.runtime.tree.ErrorNode;
 
 import model.*;
-import model.semcheck.MultipleFuncSemCheck;
+import model.SemCheck.MultipleFuncSemCheck;
 import model.objects.*;
 
 public class FuncDeclaratorVisitor implements ParseTreeListener {
