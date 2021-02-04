@@ -1,11 +1,13 @@
-package model.semcheck;
+package model.SemCheck;
 
 import model.objects.*;
 import model.Console;
-import parser.PSCParser.SimpleExpressionContext;
-import parser.PSCParser.MutableContext;
-import parser.PSCParser.CallContext;
-import parser.PSCParser.ConstantContext;
+//import parser.ThanosParser.SimpleExpressionContext;
+import parser.ThanosParser.ExpressionStatementContext;
+//import parser.ThanosParser.MutableContext;
+import parser.ThanosParser.PostfixExpressionContext;
+import parser.ThanosParser.CallContext;
+import parser.ThanosParser.ConstantContext;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
@@ -18,10 +20,10 @@ import model.*;
 
 public class UndeclaredSemCheck implements SemCheck, ParseTreeListener {
 
-	private SimpleExpressionContext simpleCtx;
+	private ExpressionStatementContext simpleCtx;
 	private int line;
 
-	public UndeclaredSemCheck(SimpleExpressionContext simpleCtx) {
+	public UndeclaredSemCheck(ExpressionStatementContext simpleCtx) {
 		this.simpleCtx = simpleCtx;
 
 		Token first = this.simpleCtx.getStart();
@@ -39,8 +41,8 @@ public class UndeclaredSemCheck implements SemCheck, ParseTreeListener {
 	@Override
 	public void enterEveryRule(ParserRuleContext ctx) {
 
-		if(ctx instanceof MutableContext) {
-			MutableContext mutableCtx = (MutableContext) ctx;
+		if(ctx instanceof PostfixExpressionContext) {
+			PostfixExpressionContext mutableCtx = (PostfixExpressionContext) ctx;
 
 			PseudoValue pseudoValue = ScopeManager.getInstance().searchMyScopeVariable(mutableCtx.IDENTIFIER().getText());
 

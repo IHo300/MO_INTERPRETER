@@ -8,23 +8,26 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.math.BigDecimal;
-import parser.PSCParser.SimpleExpressionContext;
-import parser.PSCParser.MutableContext;
+//import parser.ThanosParser.SimpleExpressionContext; to exprstmtctx
+import parser.ThanosParser.ExpressionStatementContext;
+//import parser.ThanosParser.MutableContext; to postfixexprctx
+import parser.ThanosParser.PostfixExpressionContext;
 import model.*;
 import model.objects.*;
-import model.semcheck.*;
+import model.SemCheck.UndeclaredSemCheck;
 
 public class AssignCommand implements Command {
 
     private Scope scope; 
     private TerminalNode id;
-    private MutableContext mutableCtx;
-    private SimpleExpressionContext rhsCtx;
+    private PostfixExpressionContext mutableCtx;
+    private ExpressionStatementContext rhsCtx;
     private EvaluateCommand evalCommand;
     
-    public AssignCommand(MutableContext mutableCtx, SimpleExpressionContext rhsCtx) {
+    public AssignCommand(PostfixExpressionContext mutableCtx, ExpressionStatementContext rhsCtx) {
         this.rhsCtx = rhsCtx;
-        this.id = mutableCtx.IDENTIFIER();
+        //this.id = mutableCtx.IDENTIFIER();
+        this.id = mutableCtx.primaryExpression().Identifier(); //Double check this with the original
         this.mutableCtx = mutableCtx;
         this.scope = ScopeManager.getInstance().getScope();
 

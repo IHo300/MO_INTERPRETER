@@ -1,4 +1,4 @@
-package model.semcheck;
+package model.SemCheck;
 
 import model.objects.*;
 import model.Console;
