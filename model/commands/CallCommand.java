@@ -1,7 +1,8 @@
 package model.commands;
 
-import parser.PSCParser.ArgumentsContext;
-import parser.PSCParser.SimpleExpressionContext;
+import parser.ThanosParser.ArgumentsContext;
+//import parser.ThanosParser.SimpleExpressionContext;
+import parser.ThanosParser.ExpressionStatementContext;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
@@ -34,10 +35,10 @@ public class CallCommand implements Command {
             return;
         }
 
-        List<SimpleExpressionContext> args = argsCtx.simpleExpression();
+        List<ExpressionStatementContext> args = argsCtx.simpleExpression();
 
         for (int i = 0; i < args.size(); i++) {
-            SimpleExpressionContext simpleCtx = args.get(i);
+            ExpressionStatementContext simpleCtx = args.get(i);
 
             if (i < this.func.getParameterCount()) {
                 TypeMismatchSemCheck typeMMSemCheck = new TypeMismatchSemCheck(this.func.getParamAt(i), simpleCtx);
@@ -51,10 +52,10 @@ public class CallCommand implements Command {
             return;
         }
 
-        List<SimpleExpressionContext> args = argsCtx.simpleExpression();
+        List<ExpressionStatementContext> args = argsCtx.simpleExpression();
 
         for (int i = 0; i < args.size(); i++) {
-            SimpleExpressionContext simpleCtx = args.get(i);
+            ExpressionStatementContext simpleCtx = args.get(i);
 
 
             if (this.func.getParamAt(i).getPrimitiveType() == PrimitiveType.ARRAY) {

@@ -1,10 +1,10 @@
 package model.commands;
 
-import parser.PSCParser.SimpleExpressionContext;
+import parser.ThanosParser.SimpleExpressionContext;
 
 import model.*;
 import model.objects.*;
-import model.semcheck.*;
+import model.SemCheck.*;
 
 public class CreateArrayCommand implements Command {
 

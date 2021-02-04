@@ -5,7 +5,6 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import parser.ThanosParser.IterationStmtContext;
 import parser.ThanosParser.WhileStatementContext;
 import parser.ThanosParser.ForStatementContext;
-import parser.ThanosParser.IterationStmtContext;
 import parser.ThanosParser.CompoundStmtContext;
 import parser.ThanosParser.LoopDeclarationContext;
 import org.antlr.v4.runtime.ParserRuleContext;

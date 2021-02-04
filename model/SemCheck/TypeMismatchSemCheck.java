@@ -3,7 +3,8 @@ package model.SemCheck;
 import model.SemCheck.*;
 import model.objects.*;
 import model.Console;
-import parser.ThanosParser.SimpleExpressionContext;
+//import parser.ThanosParser.SimpleExpressionContext;
+import parser.ThanosParser.ExpressionStatementContext;
 import parser.ThanosParser.ConstantContext;
 import parser.ThanosParser.MutableContext;
 import parser.ThanosParser.CallContext;
@@ -23,12 +24,12 @@ public class TypeMismatchSemCheck implements SemCheck, ParseTreeListener {
     private static final String errorTemplate = "TypeMismatch error:  ";
 
     private PseudoValue pseudoValue;
-    private SimpleExpressionContext exprCtx;
+    private ExpressionStatementContext exprCtx;
     private int line;
 	private boolean isArgs = false;
 	private List<String> excluded;
 
-    public TypeMismatchSemCheck(PseudoValue pseudoValue, SimpleExpressionContext exprCtx) {
+    public TypeMismatchSemCheck(PseudoValue pseudoValue, ExpressionStatementContext exprCtx) {
         this.pseudoValue = pseudoValue;
         this.exprCtx = exprCtx;
 
@@ -117,9 +118,9 @@ public class TypeMismatchSemCheck implements SemCheck, ParseTreeListener {
 			FunctionCallSemCheck callSemCheck = new FunctionCallSemCheck(callCtx);
 			callSemCheck.check();
 
-			List<SimpleExpressionContext> arguments = callCtx.arguments().simpleExpression();
+			List<ExpressionStatementContext> arguments = callCtx.arguments().simpleExpression();
 			
-			for (SimpleExpressionContext exprCtx : arguments) { // arguments are checked differently
+			for (ExpressionStatementContext exprCtx : arguments) { // arguments are checked differently
 				excluded.add(exprCtx.getText());
 			}
 

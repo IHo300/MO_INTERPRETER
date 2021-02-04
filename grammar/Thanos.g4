@@ -727,6 +727,7 @@ Constant
     :   IntegerConstant
     |   FloatingConstant
     //|   EnumerationConstant
+    |   StringLiteral//added
     |   CharacterConstant
     ;
 

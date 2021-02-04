@@ -7,7 +7,7 @@ import parser.ThanosParser.SimpleExpressionContext;
 
 import model.*;
 import model.objects.*;
-import model.Semcheck.*;
+import model.SemCheck.*;
 import model.commands.*;
 import java.util.*;
 

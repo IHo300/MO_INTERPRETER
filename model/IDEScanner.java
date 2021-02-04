@@ -1,6 +1,5 @@
 
 package model;
-import java.util.*;
 import view.Gui;
 
 public class IDEScanner {
