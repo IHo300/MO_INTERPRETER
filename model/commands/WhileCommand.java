@@ -15,7 +15,7 @@ import java.util.*;
 public class WhileCommand implements ControlledCommand {
 
     private List<Command> commandList;
-    private IterationToStatementContext iterationToStatementCtx;
+    //private IterationToStatementContext iterationToStatementCtx;
     private SimpleExpressionContext simpleExpressionCtx;
     private Scope scope;
     private PseudoValue pseudoValue;
@@ -27,18 +27,18 @@ public class WhileCommand implements ControlledCommand {
     public WhileCommand(WhileStatementContext whileStatementContext) {
         this.commandList = new ArrayList<>();
         this.iteratorIdentifier = whileStatementContext.IDENTIFIER().getText();
-        this.iterationToStatementCtx = whileStatementContext.iterationToStatement();
+//        this.iterationToStatementCtx = whileStatementContext.iterationToStatement();
         this.simpleExpressionCtx = whileStatementContext.simpleExpression();
         this.scope = ScopeManager.getInstance().getScope();
         
         this.pseudoValue = scope.getVariableAllScope(iteratorIdentifier);
 
 
-        if (iterationToStatementCtx.getText().contains("up")){
-            this.isLessThan = true;
-        } else {
-            this.isLessThan = false;
-        } 
+//        if (iterationToStatementCtx.getText().contains("up")){
+//            this.isLessThan = true;
+//        } else {
+//            this.isLessThan = false;
+//        }
     }
 
     @Override

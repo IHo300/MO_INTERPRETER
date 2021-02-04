@@ -1,9 +1,9 @@
 package model.commands;
 
-import parser.ThanosParser.ForStatementContext;
-import parser.ThanosParser.LoopDeclarationContext;
-import parser.ThanosParser.IterationToStatementContext;
-import parser.ThanosParser.SimpleExpressionContext;
+import parser.ThanosParser.IterationStatementContext;
+import parser.ThanosParser.ForConditionContext;
+//import parser.ThanosParser.IterationToStatementContext;
+import parser.ThanosParser.StatementContext;
 
 import model.*;
 import model.objects.*;
@@ -18,32 +18,32 @@ public class ForCommand implements ControlledCommand {
     private Scope scope;
     private PseudoValue pseudoValue;
     private String iteratorIdentifier ;
-    private LoopDeclarationContext loopDeclarationCtx; 
-    private IterationToStatementContext iterationToStatementCtx;
-    private SimpleExpressionContext simpleExpressionCtx;
+    private ForConditionContext forConditionContextCtx;
+    //private IterationToStatementContext iterationToStatementCtx;
+    private StatementContext stmtCtx;
     private boolean isLessThan = false;
 
-    public ForCommand(ForStatementContext forStatementContext) {
+    public ForCommand(IterationStatementContext iterationStatementContext) {
         this.commandList = new ArrayList<>();
-        this.loopDeclarationCtx = forStatementContext.loopDeclaration();
-        this.iterationToStatementCtx = forStatementContext.iterationToStatement();
-        this.simpleExpressionCtx = forStatementContext.simpleExpression();
-        this.iteratorIdentifier = loopDeclarationCtx.IDENTIFIER().getText();
+        this.forConditionContextCtx = iterationStatementContext.forCondition();
+        //this.iterationToStatementCtx = forStatementContext.iterationToStatement();
+        this.stmtCtx = iterationStatementContext.statement();
+        this.iteratorIdentifier = forConditionContextCtx.Identifier().getText();
         
         this.scope = ScopeManager.getInstance().getScope();
         this.pseudoValue = scope.getVariableAllScope(iteratorIdentifier);
-        if (iterationToStatementCtx.getText().contains("up")){
-            this.isLessThan = true;
-        } else {
-            this.isLessThan = false;
-        } 
+//        if (iterationToStatementCtx.getText().contains("up")){
+//            this.isLessThan = true;
+//        } else {
+//            this.isLessThan = false;
+//        }
     }
 
     @Override
     public void execute() {
         this.counter = Integer.parseInt(pseudoValue.getValue().toString());
 
-        EvaluateCommand evalCommand = new EvaluateCommand(this.simpleExpressionCtx, this.scope);
+        EvaluateCommand evalCommand = new EvaluateCommand(this.stmtCtx, this.scope);
         evalCommand.execute();
 
         if (this.isLessThan) {
@@ -57,7 +57,7 @@ public class ForCommand implements ControlledCommand {
                     } 
                 }
 
-                evalCommand = new EvaluateCommand(this.simpleExpressionCtx, this.scope);
+                evalCommand = new EvaluateCommand(this.stmtCtx, this.scope);
                 evalCommand.execute();
                 this.updateCounter();
             }
@@ -74,7 +74,7 @@ public class ForCommand implements ControlledCommand {
                     } 
                 }
 
-                evalCommand = new EvaluateCommand(this.simpleExpressionCtx, this.scope);
+                evalCommand = new EvaluateCommand(this.stmtCtx, this.scope);
                 evalCommand.execute();
                 this.updateCounter();
             }

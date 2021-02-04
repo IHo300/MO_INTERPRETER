@@ -18,6 +18,10 @@ primaryExpression
     |   '__builtin_offsetof' '(' typeName ',' unaryExpression ')'
     ;
 
+functionCall
+    : Identifier '(' argumentExpressionList ')'
+    ;
+
 genericSelection
     :   '_Generic' '(' assignmentExpression ',' genericAssocList ')'
     ;
@@ -53,6 +57,7 @@ argumentExpressionList
     :   assignmentExpression
     |   argumentExpressionList ',' assignmentExpression
     |   argumentExpressionList ',,' assignmentExpression { false }?<fail={ "duplicate comma" }>//added
+    |
     ;
 
 unaryExpression
@@ -87,10 +92,25 @@ multiplicativeExpression
     |   multiplicativeExpression '%' castExpression
     ;
 
+scanStatement
+    : 'scan' '(' StringLiteral ',' Identifier ')'
+    ;
+
 printStatement
-    : 'print' '(' StringLiteral expression? ')'//added
+    : 'print' '(' printParameter ')'//added
     | 'print' '(' StringLiteral expression? '+' ')' { false }?<fail={ "additional '+' sign at end of print" }>//added //tbm
     | 'print' '('expressionList? ')' { false }?<fail={ "No doublequotes" }>//added
+    ;
+
+printParameter
+    : printParameterSelector ('+' printParameterSelector)*
+    | printParameterSelector '+' (printParameterSelector '+')+ {notifyErrorListeners("Extra '+' symbols found.");}
+    ;
+
+printParameterSelector
+    : StringLiteral
+    | functionCall
+    | Identifier
     ;
 
 expressionList//added
@@ -166,6 +186,10 @@ assignmentExpression
     |   DigitSequence // for
     ;
 
+assignmentJjindaExpression
+    :   postfixExpression '=' expressionStatement
+    ;
+
 assignmentOperator
     :   '=' | '*=' | '/=' | '%=' | '+=' | '-=' | '<<=' | '>>=' | '&=' | '^=' | '|='
     ;
@@ -181,10 +205,28 @@ constantExpression
 
 declaration
     :   declarationSpecifiers initDeclaratorList declarationSpecifiers? ';'
-    |   typeSpecifier typeSpecifier '=' Constant { false }?<fail={ "duplicate typeSpecifier" }> ';'//added tbm
+    |   typeSpecifierSelector typeSpecifierSelector '=' Constant { false }?<fail={ "duplicate typeSpecifier" }> ';'//added tbm
 //    |   declarationSpecifiers initDeclaratorList declarationSpecifiers? ')' ';' { false }?<fail={ "duplicate ')' sign" }>//added
 	| 	declarationSpecifiers ';'
     |   staticAssertDeclaration
+    |   variableDeclaration
+    |   arrayDeclaration
+    ;
+
+variableDeclaration
+    :   typeSpecifier variableInitializer
+    ;
+
+variableInitializer
+    :   Identifier ('=' postfixExpression)?
+    ;
+
+arrayDeclaration
+    :   arrayTypeSpecifier arrayInitializer
+    ;
+
+arrayInitializer//?maybe needs to be modified
+    :   Identifier ('=' postfixExpression)?
     ;
 
 declarationSpecifiers
@@ -197,7 +239,7 @@ declarationSpecifiers2
 
 declarationSpecifier
     :   storageClassSpecifier
-    |   typeSpecifier
+    |   typeSpecifierSelector
     |   typeQualifier
     |   functionSpecifier
     |   alignmentSpecifier
@@ -226,7 +268,7 @@ typeSpecifier
     :   ('void'
     |   'char'
     |   'short'
-    |   'int' Array?//modified
+    |   'int'
     |   'long'
     |   'float'
     |   'double'
@@ -244,6 +286,15 @@ typeSpecifier
     |   typedefName
     |   '__typeof__' '(' constantExpression ')' // GCC extension
     |   typeSpecifier pointer
+    ;
+
+arrayTypeSpecifier
+    :   typeSpecifier '[' ']'
+    ;
+
+typeSpecifierSelector
+    :   typeSpecifier
+    |   arrayTypeSpecifier
     ;
 
 structOrUnionSpecifier
@@ -267,7 +318,7 @@ structDeclaration
     ;
 
 specifierQualifierList
-    :   typeSpecifier specifierQualifierList?
+    :   typeSpecifierSelector specifierQualifierList?
     |   typeQualifier specifierQualifierList?
     ;
 
@@ -341,7 +392,7 @@ directDeclarator
     |   directDeclarator '(' parameterTypeList ')'
     |   directDeclarator '(' identifierList? ')'
     |   Identifier ':' DigitSequence  // bit field
-    |   '(' typeSpecifier? pointer directDeclarator ')' // function pointer like: (__cdecl *f)
+    |   '(' typeSpecifierSelector? pointer directDeclarator ')' // function pointer like: (__cdecl *f)
     ;
 
 gccDeclaratorExtension
@@ -461,6 +512,7 @@ staticAssertDeclaration
 statement
     :   labeledStatement
     |   printStatement //added
+    |   scanStatement //added
     |   compoundStatement
     |   expressionStatement
     |   selectionStatement
@@ -492,7 +544,9 @@ blockItem
 expressionStatement
     :   expression? ';'//modified
     |   expression? { false }?<fail={ "missing operator" }> Identifier';'//added
+    |   (assignmentJjindaExpression|functionCall)
     ;
+
 
 selectionStatement
     :   'if' '(' comparisonStatement ')' 'then' statement ('else' 'then' statement)?//modified
@@ -522,6 +576,8 @@ iterationStatement
     //|   For forCondition statement//added
     ;
 
+
+
 //    |   'for' '(' expression? ';' expression?  ';' forUpdate? ')' statement
 //    |   For '(' declaration  expression? ';' expression? ')' statement
 
@@ -529,8 +585,8 @@ forCondition
 	//:   forDeclaration ';' forExpression? ';' forExpression?//original
     //:   forDeclaration forExpression? forExpression?//modified
     //:   typeSpecifier Identifier comparisonOperator initializer forExpression? forExpression?//added
-    :   typeSpecifier Identifier '=' initializer ';' forExpression? ';' forExpression?//added
-    |   typeSpecifier Identifier ';' forExpression? ';' forExpression? { false }?<fail={ "missing assignment operator" }>//added
+    :   typeSpecifierSelector Identifier '=' initializer ';' forExpression? ';' forExpression?//added
+    |   typeSpecifierSelector Identifier ';' forExpression? ';' forExpression? { false }?<fail={ "missing assignment operator" }>//added
     //|   typeSpecifier Identifier '=' initializer ';' Identifier comparisonOperators ';' forExpression? { false }?<fail={ "eerreeerrere" }>//added
 	//|   expression? ';' forExpression? ';' forExpression?//original
 	;
@@ -550,7 +606,7 @@ jumpStatement
     |   'continue' ';'
     |   'break' ';'
     |   'return' expression? ';'
-    |   'return' typeSpecifier { false }?<fail={ "expected identifier" }> ';'//added
+    |   'return' typeSpecifierSelector { false }?<fail={ "expected identifier" }> ';'//added
     //|   'return' expression? '()' ';'<fail={ "redundant parentheses" }>
     |   'goto' unaryExpression ';' // GCC extension
     ;
